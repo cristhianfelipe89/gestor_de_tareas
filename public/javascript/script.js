@@ -8,9 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let editIndex = -1;
     let editTaskId = null;
 
+    let apiUrl = 'https://gestor-de-tareas-two.vercel.app/api/tasks'
+
     const fetchTasks = async () => {
         try {
-            const response = await fetch('http://localhost:4000/api/tasks');
+            const response = await fetch('apiUrl');
             tasks = await response.json();
             renderTasks();
         } catch (error) {
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const addTask = async (task) => {
         try {
-            const response = await fetch('http://localhost:4000/api/tasks', {
+            const response = await fetch('apiUrl', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateTask = async (id, updatedTask) => {
         try {
-            const response = await fetch(`http://localhost:4000/api/tasks/${id}`, {
+            const response = await fetch(`apiUrl/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateTaskState = async (id) => {
         try {
-            const response = await fetch(`http://localhost:4000/api/tasks/${id}`, {
+            const response = await fetch(`apiUrl/${id}`, {
                 method: 'PATCH',
             });
             const newTask = await response.json();
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const deleteTask = async (id) => {
         try {
-            await fetch(`http://localhost:4000/api/tasks/${id}`, {
+            await fetch(`apiUrl/${id}`, {
                 method: 'DELETE',
             });
             tasks = tasks.filter((task) => task._id !== id);
