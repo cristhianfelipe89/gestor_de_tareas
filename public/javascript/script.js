@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let editIndex = -1;
     let editTaskId = null;
 
-    let apiUrl = 'https://gestor-de-tareas-two.vercel.app/api/tasks'
+    //const apiUrl = 'https://gestor-de-tareas-two.vercel.app/api/tasks'
 
     const fetchTasks = async () => {
         try {
-            const response = await fetch('apiUrl');
+            const response = await fetch('https://gestor-de-tareas-two.vercel.app/api/tasks');
             tasks = await response.json();
             renderTasks();
         } catch (error) {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const addTask = async (task) => {
         try {
-            const response = await fetch('apiUrl', {
+            const response = await fetch('https://gestor-de-tareas-two.vercel.app/api/tasks', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateTask = async (id, updatedTask) => {
         try {
-            const response = await fetch(`apiUrl/${id}`, {
+            const response = await fetch(`https://gestor-de-tareas-two.vercel.app/api/tasks/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateTaskState = async (id) => {
         try {
-            const response = await fetch(`apiUrl/${id}`, {
+            const response = await fetch(`https://gestor-de-tareas-two.vercel.app/api/tasks/${id}`, {
                 method: 'PATCH',
             });
             const newTask = await response.json();
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const deleteTask = async (id) => {
         try {
-            await fetch(`apiUrl/${id}`, {
+            await fetch(`https://gestor-de-tareas-two.vercel.app/api/tasks/${id}`, {
                 method: 'DELETE',
             });
             tasks = tasks.filter((task) => task._id !== id);
@@ -135,3 +135,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchTasks();
 });
+
